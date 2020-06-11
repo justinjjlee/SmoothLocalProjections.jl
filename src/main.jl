@@ -1,4 +1,4 @@
-using Pkg;
+using Pkg, Juno;
 using CSV, Statistics, LinearAlgebra: I;
 cd(@__DIR__) #src
 
