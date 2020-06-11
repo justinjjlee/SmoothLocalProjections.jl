@@ -1,22 +1,23 @@
 using Pkg;
-using CSV, Statistics, LinearAlgebra: I;
+using CSV, Plots;
+using Statistics, SparseArrays, LinearAlgebra;
 cd(@__DIR__) #src
 
 include("func_slp.jl")
 
-mutable struct InputPackage
+mutable struct inputcom
   y        :: Array
   x        :: Array
   w        :: Array
   H_min    :: Int
   H_max    :: Int
   type     :: String
-  r        <: Float64
-  λ        <: Float64
+  r        :: Int8
+  λ        :: Int8
 end
 
 df = CSV.read("data.csv");
-df = convert(Array{Float64}, df[:, 2:4]);
+df = convert(Array{Float16}, df[:, 2:4]);
 T, k = size(df);
 
 P = 4; # Number of lags used in LP - controlled variable
@@ -33,24 +34,24 @@ ind_shock    = 3; # Endogenous variable related to the shock
 ind_lp = "reg"; # Type of linear regression
 
 ind_contempo = filter(x -> x ≠ ind_shock, ind_all);
-
-y  = df[(P+1):end, ind_response]; # endogenous variable
-x  = df[(P+1):end, ind_shock]; # endoegnous variable related to the shock
+#,(P+1):end
+y  = df[:, ind_response]; # endogenous variable
+x  = df[:, ind_shock]; # endoegnous variable related to the shock
 
 # control variables (contemporaneous vars, lagged vars)
-w  = [ df[(P+1):end, ind_contempo]  matlag( df , P ) ];
-
+w  = [ df[:, ind_contempo]  matlag( df , P ) ];
+w[.!isfinite.(w)] .= 0;
 # Packaing everything as input
+r = 2; #(r-1)=order of the limit polynomial (so r=2 implies the IR is shrunk towards a line )
+λ = 100; # value of penalty
 
-testing = InputPackage(y, x, w, H_min, H_max,ind_lp, 3,4)
-
-# Edit by 11/13/2019
-
+testing₀ = inputcom(y, x, w, H_min, H_max, "reg", 3,4);
+testing₁ = inputcom(y, x, w, H_min, H_max, "smooth", r, λ);
 
 
-w( ~isfinite(w) ) = 0;
+lp₀ = smoothlocalprojection(testing₀);
 
-lp = locproj(y,x,w,H_min,H_max,ind_lp); % IR from (standard) Local Projection
-
-r = 2; %(r-1)=order of the limit polynomial (so r=2 implies the IR is shrunk towards a line )
-lambda = 100; % value of penalty
+lp₁ = smoothlocalprojection(testing₁);
+lp₁.δ
+plot(lp₀.IR)
+plot!(lp₁.IR)
