@@ -1,24 +1,57 @@
-mutable struct outputcom
-    T
-    H_min
-    H_max
-    HR
-    K
-    B
-    P
-    λ
-    type
-    δ
-    idx
-    Θ
-    IR
-    X
-    Y
+# Define structure
+mutable struct inputcom
+  y        :: Vector{Float64}
+  x        :: Vector{Float64}
+  w        :: Array{Float64, 2}
+  H_min    :: Int64
+  H_max    :: Int64
+  type     :: String
+  r        :: Float64
+  λ        :: Float64
 end
 
-function smoothlocalprojection(packagedinput)
+mutable struct outputcom
+    T      :: Int64
+    H_min  :: Int64
+    H_max  :: Int64
+    HR     :: Int64
+    K      :: Int64
+    B      :: Array{Float64, 2}
+    P      :: Array{Float64, 2}
+    λ      :: Float64
+    type   :: String
+    δ      :: Float64
+    idx    :: Array{Float64, 2}
+    Θ      :: Vector{Float64}
+    IR     :: Array{Float64, 2}
+    X      :: Array{Float64, 2}
+    Y      :: Vector{Float64}
+end
 
+#Define functional form
+function initalz(df, indx, indx_str, param)
+    T, k = size(df)
+    ind_response, ind_shock = indx[1], indx[2];
+    ind_all = 1:k;
 
+  H_min, H_max = 1, indx[3];
+  P = indx[4]
+  r, λ = param[1], param[2];
+
+  # Indicators for variables
+  ind_contempo = filter(x -> x ≠ ind_shock, ind_all);
+  #,(P+1):end
+  y  = df[:, ind_response]; # endogenous variable
+  x  = df[:, ind_shock]; # endoegnous variable related to the shock
+
+  # control variables (contemporaneous vars, lagged vars)
+  w  = [ df[:, ind_contempo]  matlag( df , P ) ];
+  w[.!isfinite.(w)] .= 0;
+
+  return inputcom(y, x, w, H_min, H_max, indx_str, r, λ);
+end
+
+function slp(packagedinput)
     # Unpackage data
     y        = packagedinput.y;
     x        = packagedinput.x;
@@ -39,16 +72,18 @@ function smoothlocalprojection(packagedinput)
     # Is it the regular regression-type?
     isreg = type == "reg";
 
-
     T  = length(y);
     HR = H_max + 1 - H_min;
 
     # construct the B-spline basis functions
+    κ = 3;
     if ~isreg
-        B = bspline((H_min:H_max)', H_min, (H_max + 1), (H_max+1-H_min), 3);
+        B = bspline((H_min:H_max)', H_min, (H_max + 1), (H_max+1-H_min), κ);
         K = size( B , 2 );
     else
         K = HR;
+        B = fill(0.0, (H_max, H_max + κ));
+        λ = 0;
     end
 
     # building up the regression representation of the local projection
@@ -103,9 +138,7 @@ function smoothlocalprojection(packagedinput)
         IR[(H_min+1):end] = Θ[1:K] .* δ;
 
         # Parameter not used but still defined,
-        B = 0;
         P = zeros(Float16, size(X,2), size(X,2) );
-        λ = 0;
     else
         P = zeros(Float16, size(X,2), size(X,2));
 
@@ -130,6 +163,30 @@ function smoothlocalprojection(packagedinput)
     # obj.Bs = Bs;
 end
 
+function slpᵥ(output, λₘ = 10)
+    X = output.X;
+    Y = output.Y;
+    P = output.P;
+    T = output.T
+
+    λᵥ = Array(1.0 : 0.05 : λₘ) .* T;
+
+    L = length(λᵥ);
+    resvec = zeros(Float64, L, 2);
+    resvec[:, 1] = λᵥ[:];
+
+    for l ∈ 1:L
+        S = X * inv((X' * X) + (λᵥ[l] .* P)) * X';
+        #X * (((X' * X) + (λᵥ[l] .* P)) \ X')
+        # Need to convert
+        resvec[l,2] = rss(Y, S*Y, (1 .- diag(S)));
+    end
+
+    λₒ = resvec[(minimum(resvec[:,2]) .== resvec[:,2]), 1][];
+
+    return(λₒ, resvec)
+end
+
 function bspline(x, xl, xr, ndx, bdeg)
 
     dx = (xr - xl) / ndx;
@@ -148,6 +205,11 @@ function bspline(x, xl, xr, ndx, bdeg)
     return B;
 end
 
+function rss(y, ŷ, σ)
+    res = sum(((y .- ŷ) ./ σ).^2)
+    return res;
+end
+
 function matlag(x, lag)
     t, k = size(x);
     res = zeros(Float16, (t-lag), lag * k)
@@ -162,12 +224,12 @@ function matlag(x, lag)
         res[(i+1):end, ((i-1)*k + 1):(i*k)] = lag_array;
     end
 
-    return res
+    return res;
 end
 
 eye(n) = Matrix{Float16}(I, n, n)
 
 function nan(x, y)
     temp = zeros(Float16, x, y);
-    return replace(temp, 0 => NaN)
+    return replace(temp, 0 => NaN);
 end
