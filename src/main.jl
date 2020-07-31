@@ -17,20 +17,15 @@ H_max = 20;
 ind_response = 1; # Endogenous variable - response
 ind_shock    = 3; # Endogenous variable related to the shock
 
-indx     = [ind_response ind_shock H_max P];
-indx_str = "reg"; # Type of linear regression
-
 # Packaing everything as input
-r = 2; #(r-1)=order of the limit polynomial (so r=2 implies the IR is shrunk towards a line )
+r = 2; #(r-1)=order of the limit polynomial
+# NOTE: (so r=2 implies the IR is shrunk towards a line )
 λ = 100; # value of penalty
 
-param = [r λ];
+indx     = [ind_response ind_shock H_max P];
+param    = [r λ];
 
 testing₀ = initalz(df, indx, "reg", param);
-
-#testing₀ = inputcom(y, x, w, H_min, H_max, "reg", 3,4);
-#testing₁ = inputcom(y, x, w, H_min, H_max, "smooth", r, λ);
-
 testing₁ = initalz(df, indx, "smooth", param);
 ## Point estimation of the local projection
 lp₀ = slp(testing₀);
@@ -45,22 +40,6 @@ plot!(lp₁.IR)
 λₒ, resvec = slpᵥ(lp₁);
 #Juno.@enter slpᵥ(lp₁)
 plot(resvec[:,1], resvec[:,2])
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

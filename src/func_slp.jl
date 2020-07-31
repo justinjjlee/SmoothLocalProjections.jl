@@ -34,21 +34,21 @@ function initalz(df, indx, indx_str, param)
     ind_response, ind_shock = indx[1], indx[2];
     ind_all = 1:k;
 
-  H_min, H_max = 1, indx[3];
-  P = indx[4]
-  r, λ = param[1], param[2];
+    H_min, H_max = 1, indx[3];
+    P = indx[4]
+    r, λ = param[1], param[2];
 
-  # Indicators for variables
-  ind_contempo = filter(x -> x ≠ ind_shock, ind_all);
-  #,(P+1):end
-  y  = df[:, ind_response]; # endogenous variable
-  x  = df[:, ind_shock]; # endoegnous variable related to the shock
+    # Indicators for variables
+    ind_contempo = filter(x -> x ≠ ind_shock, ind_all);
 
-  # control variables (contemporaneous vars, lagged vars)
-  w  = [ df[:, ind_contempo]  matlag( df , P ) ];
-  w[.!isfinite.(w)] .= 0;
+    y  = df[:, ind_response]; # endogenous variable
+    x  = df[:, ind_shock]; # endoegnous variable related to the shock
 
-  return inputcom(y, x, w, H_min, H_max, indx_str, r, λ);
+    # control variables (contemporaneous vars, lagged vars)
+    w  = [ df[:, ind_contempo]  matlag( df , P ) ];
+    w[.!isfinite.(w)] .= 0;
+
+    return inputcom(y, x, w, H_min, H_max, indx_str, r, λ);
 end
 
 function slp(packagedinput)
@@ -66,7 +66,7 @@ function slp(packagedinput)
     if isempty(w)
         δ = std(x);
     else
-        δ = std( x - w*inv(w'*w)*w'*x );
+        δ = std(x - w * inv(w' * w) * w' * x);
     end
 
     # Is it the regular regression-type?
@@ -78,8 +78,8 @@ function slp(packagedinput)
     # construct the B-spline basis functions
     κ = 3;
     if ~isreg
-        B = bspline((H_min:H_max)', H_min, (H_max + 1), (H_max+1-H_min), κ);
-        K = size( B , 2 );
+        B = bspline((H_min:H_max)', H_min, (H_max + 1), (H_max + 1 - H_min), κ);
+        K = size(B, 2);
     else
         K = HR;
         B = fill(0.0, (H_max, H_max + κ));
@@ -154,7 +154,7 @@ function slp(packagedinput)
         IR[(1+H_min):end] = B * Θ[1:K] .* δ;
     end
 
-    output = outputcom(T, H_min, H_max, HR, K, B,P,λ,type,δ,idx,Θ,IR,X,Y) ;
+    output = outputcom(T, H_min, H_max, HR, K, B,P,λ,type,δ,idx,Θ,IR,X,Y);
 
     return(output);
     # debug stuff
@@ -167,7 +167,7 @@ function slpᵥ(output, λₘ = 10)
     X = output.X;
     Y = output.Y;
     P = output.P;
-    T = output.T
+    T = output.T;
 
     λᵥ = Array(1.0 : 0.05 : λₘ) .* T;
 
@@ -184,14 +184,14 @@ function slpᵥ(output, λₘ = 10)
 
     λₒ = resvec[(minimum(resvec[:,2]) .== resvec[:,2]), 1][];
 
-    return(λₒ, resvec)
+    return(λₒ, resvec);
 end
 
 function bspline(x, xl, xr, ndx, bdeg)
 
     dx = (xr - xl) / ndx;
 
-    t = xl .+ dx .* vec(-bdeg:(ndx - 1))'
+    t = xl .+ dx .* vec(-bdeg:(ndx - 1))';
     T = ones(Float16, length(x), 1) * t;
     X = x' * ones(Float16, 1, length(t));
     P = (X .- T) ./ dx;
@@ -206,16 +206,16 @@ function bspline(x, xl, xr, ndx, bdeg)
 end
 
 function rss(y, ŷ, σ)
-    res = sum(((y .- ŷ) ./ σ).^2)
+    res = sum(((y .- ŷ) ./ σ).^2);
     return res;
 end
 
 function matlag(x, lag)
     t, k = size(x);
-    res = zeros(Float16, (t-lag), lag * k)
+    res = zeros(Float16, (t-lag), lag * k);
 
     for i ∈ 1:lag
-        res[:, ((i-1)*k + 1):(i*k)] = x[(lag-i + 1):end-i ,:]
+        res[:, ((i-1)*k + 1):(i*k)] = x[(lag-i + 1):end-i ,:];
     end
 
     res = nan(t, lag * k);
@@ -227,7 +227,7 @@ function matlag(x, lag)
     return res;
 end
 
-eye(n) = Matrix{Float16}(I, n, n)
+eye(n) = Matrix{Float16}(I, n, n);
 
 function nan(x, y)
     temp = zeros(Float16, x, y);
