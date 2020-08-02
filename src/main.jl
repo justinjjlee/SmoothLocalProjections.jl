@@ -50,7 +50,7 @@ lp₂ = slp(inicjał₂);
 lp₂_ci = slp_ci(lp₂);
 
 # rezultat ============================================================================================
-plot(lp₀.IR, xlabel = "Time since stimulus/impact", ylabel = "Response", label = "Jordá (2005)")
+plot(lp₀.IR, xlabel = "Time since stimulus/impact", ylabel = "Response", label = "Jordà (2005)")
 plot!(lp₁.IR, label = "SLP: λ = $(λ)", color = "purple")
 plot!(zeros(length(lp₁.IR)), label = false, color = "black", line = :dot)
 plot!(lp₂.IR, label = "SLP: λ optymalny = $(λₒ)", color = "red")
@@ -62,7 +62,7 @@ function plt_anime(ir₁, ir₂, iter)
   plot!(ir₂.IR[1:iter], label = "SLP: λ optymalny = $(λₒ)", color = "red")
 end
 
-plot(lp₀.IR, xlabel = "Time since stimulus/impact", ylabel = "Response", label = "Jordá (2005)")
+plot(lp₀.IR, xlabel = "Time since stimulus/impact", ylabel = "Response", label = "Jordà (2005)")
 plot!(zeros(length(lp₁.IR)), label = false, color = "black", line = :dot)
 plot!(lp₂_ci, line = :dash, color = "red", legend = false)
 fantazyjny = @animate for iter ∈ 1:length(lp₁.IR)
