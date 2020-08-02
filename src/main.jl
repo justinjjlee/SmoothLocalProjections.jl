@@ -49,28 +49,24 @@ inicjał₂ = initalz(df, indx, "smooth", [r λₒ]);
 lp₂ = slp(inicjał₂);
 lp₂_ci = slp_ci(lp₂);
 
-# rezultat
+# rezultat ============================================================================================
 plot(lp₀.IR, xlabel = "Time since stimulus/impact", ylabel = "Response", label = "Jordá (2005)")
 plot!(lp₁.IR, label = "SLP: λ = $(λ)", color = "purple")
 plot!(zeros(length(lp₁.IR)), label = false, color = "black", line = :dot)
 plot!(lp₂.IR, label = "SLP: λ optymalny = $(λₒ)", color = "red")
 plot!(lp₂_ci, line = :dash, color = "red", legend = false)
 
-# fantazyjny
+# fantazyjny ==========================================================================================
 function plt_anime(ir₁, ir₂, iter)
   plot!(ir₁.IR[1:iter], label = "SLP: λ = $(λ)", color = "purple")
   plot!(ir₂.IR[1:iter], label = "SLP: λ optymalny = $(λₒ)", color = "red")
 end
 
 plot(lp₀.IR, xlabel = "Time since stimulus/impact", ylabel = "Response", label = "Jordá (2005)")
-
-legend(bbox_to_anchor=[1.05,1],loc=2,borderaxespad=0)
-ax.set_position([0.06,0.06,0.71,0.91])
-
 plot!(zeros(length(lp₁.IR)), label = false, color = "black", line = :dot)
 plot!(lp₂_ci, line = :dash, color = "red", legend = false)
 fantazyjny = @animate for iter ∈ 1:length(lp₁.IR)
   plt_anime(lp₁, lp₂, iter)
 end
 
-gif(fantazyjny, "anim_fps15_v.gif", fps = 5)
+gif(fantazyjny, "example.gif", fps = 5)
