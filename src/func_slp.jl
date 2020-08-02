@@ -26,6 +26,7 @@ mutable struct outputcom
     IR     :: Array{Float64, 2}
     X      :: Array{Float64, 2}
     Y      :: Vector{Float64}
+    isreg  :: Bool
 end
 
 #Define functional form
@@ -154,13 +155,83 @@ function slp(packagedinput)
         IR[(1+H_min):end] = B * Θ[1:K] .* δ;
     end
 
-    output = outputcom(T, H_min, H_max, HR, K, B,P,λ,type,δ,idx,Θ,IR,X,Y);
+    output = outputcom(T, H_min, H_max, HR, K, B,P,λ,type,δ,idx,Θ,IR,X,Y,isreg);
 
     return(output);
     # debug stuff
     # Bs is for display / debugging pourposes only
     # Bs = bspline( (H_min:0.1:H)' , H_min , H+1 , H+1-H_min , 3 );
     # obj.Bs = Bs;
+end
+
+function slp_ci(outputcomⱼ)
+    # Confidence band imputation, input from outcome
+    X = outputcomⱼ.X
+    Y = outputcomⱼ.Y
+    
+    
+    # Parameter saved
+    λ = outputcomⱼ.λ
+    P = outputcomⱼ.P
+
+    H_max = outputcomⱼ.H_max;
+    H_min = outputcomⱼ.H_min;
+    T = outputcomⱼ.T;
+    n_param = length(outputcomⱼ.Θ);
+    ω = vcat(0.5, ((H_max + 1) .- (1:H_max))./(H_max + 1));
+    idx = outputcomⱼ.idx;
+    K = outputcomⱼ.K
+    δ = outputcomⱼ.δ
+    
+    B = outputcomⱼ.B
+    isreg = outputcomⱼ.isreg;
+
+    # Point estimate
+    XXₚ = ((X' * X) + (λ .* P));
+    Θ = outputcomⱼ.Θ;
+    U = Y .- X * Θ;
+   
+    HR = outputcomⱼ.HR;
+    
+    V = zeros(n_param, n_param);
+    titer = 0;
+    S1 = X[ idx[:,1] .== titer , : ]' * U[ idx[:,1] .== titer ]
+    S2 = X[ idx[:,1] .== (titer - 1) , : ]' * U[ idx[:,1] .== (titer - 1) ]
+    for iter ∈ 0:H_max
+        ggt = zeros(n_param, n_param);
+        for titer ∈ (iter + 1):(T - HR - 1)
+            S1 = X[ idx[:,1] .== titer , : ]' * U[ idx[:,1] .== titer ];
+            S2 = X[ idx[:,1] .== (titer - iter) , : ]' * U[ idx[:,1] .== (titer - iter) ];
+            ggt += S1 * S2' + S2 * S1';
+        end
+        V += ω[iter + 1] .* ggt;
+    end
+
+    VC = XXₚ^(-1) * V * XXₚ^(-1);
+    
+    # To save confidence band
+    conf = nan(H_max + 1, 2);
+
+    # 90% confidence band;
+    t_lb = quantile(Normal(0,1), 0.05)
+    t_ub = quantile(Normal(0,1), 0.95)
+    trail_Θ = Θ[1:K];
+
+    if isreg
+        h = 1:(H_max + 1 - H_min);
+        ρ = sqrt.(diag(VC[h,h]));
+        conf[(1+H_min):end, 1] = (trail_Θ .* δ) .+ (ρ .* (δ * t_lb))
+        conf[(1+H_min):end, 2] = (trail_Θ .* δ ).+ (ρ .* (δ * t_ub))
+    else # For spline regression
+        h = 1:K;
+        ρ = sqrt.(diag(B * VC[h,h] * B'));
+        conf[(1+H_min):end, 1] = (B * trail_Θ .* δ) .+ (ρ .* (δ * t_lb))
+        conf[(1+H_min):end, 2] = (B * trail_Θ .* δ) .+ (ρ .* (δ * t_ub))
+    end
+    # Initialize the first horizon - impact
+    conf[1, 1] = outputcomⱼ.IR[1];
+    conf[1, 2] = outputcomⱼ.IR[1];
+    return(conf);
 end
 
 function slpᵥ(output, λₘ = 10)
