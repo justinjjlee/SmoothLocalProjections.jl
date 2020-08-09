@@ -19,7 +19,7 @@ Input argument is constructed using a mutable object of following,
 mutable struct InputPackage
   y        :: Array        # Defined endogenous variable for response.;
   x        :: Array        # Defined endogenous variable for generating shocks.;
-  w        :: Array        # Defined endogenous variable - contemporaneous and lagged structure.;
+  w        :: Array        # Defined endogenous variable, contemporaneous, lagged form.;
   H_min    :: Int          # Horizon sought - start.;
   H_max    :: Int          # Horizon sought - end.;
   type     :: String       # Type of regression: 'reg' to be regular, smooth otherwise.;
@@ -29,6 +29,6 @@ end
 ```
 Each stripped sub/co-routine is a plot of impulse response functions, (1 - blue line) local projection using [Òscar Jordà (2005)](https://www.aeaweb.org/articles?id=10.1257/0002828053828518); (2 - purple line) smoothed local projection using (λ = 100, for example presented below); (3 - red lines) smoothed local projection using optimal λ estimated using cross-validation method as shown in [Barnichon and Brownlees (2019)](https://www.mitpressjournals.org/doi/abs/10.1162/rest_a_00778) (red solid line is a point estimate, dashed red lines are estimated 90% confidence set).
 
-Following example is a replication of [Barnichon and Brownlees (2019)](https://www.mitpressjournals.org/doi/abs/10.1162/rest_a_00778) estimation of the impulse response of Gross Domestic Product (GDP) to identified monetary policy shock.
+Following example is a replication of [Barnichon and Brownlees (2019)](https://www.mitpressjournals.org/doi/abs/10.1162/rest_a_00778) estimation of the impulse response of Gross Domestic Product (GDP) to identified positive monetary policy shock.
 
 ![](example.gif)
