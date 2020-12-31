@@ -29,22 +29,24 @@ function smoothlocalprojection(packagedinput)
     if isempty(w)
         δ = std(x);
     else
-        δ = std( x - w*inv(w'*w)*w'*x );
+        δ = std(x - w * inv(w' * w) * w' * x);
     end
 
     # Is it the regular regression-type?
     isreg = type == "reg";
 
-
     T  = length(y);
     HR = H_max + 1 - H_min;
 
     # construct the B-spline basis functions
+    κ = 3;
     if ~isreg
-        B = bspline((H_min:H_max)', H_min, (H_max + 1), (H_max+1-H_min), 3);
-        K = size( B , 2 );
+        B = bspline((H_min:H_max)', H_min, (H_max + 1), (H_max + 1 - H_min), κ);
+        K = size(B, 2);
     else
         K = HR;
+        B = fill(0.0, (H_max, H_max + κ));
+        λ = 0;
     end
 
     # building up the regression representation of the local projection
@@ -75,7 +77,7 @@ function smoothlocalprojection(packagedinput)
         end
 
         # w
-        for i = 1:size(w,2)
+        for i ∈ 1:size(w,2)
             Xc[idx_beg:idx_end , : , i ] = eye(HR)*w[t,i];
         end
     end

@@ -20,14 +20,11 @@ df = CSV.read("data.csv");
 df = convert(Array{Float16}, df[:, 2:4]);
 T, k = size(df);
 
+## Parameterization
 P = 4; # Number of lags used in LP - controlled variable
 
 # start LP at H_min=0 or 1 (H_min=1 if impose no contemporanous impact)
-H_min = 1;
 H_max = 20;
-
-# Indicators for variables
-ind_all = 1:k
 ind_response = 1; # Endogenous variable - response
 ind_shock    = 3; # Endogenous variable related to the shock
 
