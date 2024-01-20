@@ -47,7 +47,6 @@ include("../src/functions.jl")
     lp₂ = slp(inicjał₂);
     lp₂_ci = slp_ci(lp₂);
 
-
     @test length(lp₀.IR) == (H_max - 0 + 1)
     @test any(lp₀.IR .== NaN) == false
     @test any(lp₁.IR .== NaN) == false

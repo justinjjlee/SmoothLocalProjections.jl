@@ -59,14 +59,14 @@ Following example is a replication of [Barnichon and Brownlees (2019)](https://w
 
 ```julia
 
-# rezultat ============================================================================================
+# rezultat 
 plot(lp₀.IR, xlabel = "Time since stimulus/impact", ylabel = "Response", label = "Jordà (2005)")
 plot!(lp₁.IR, label = "SLP: λ = $(λ)", color = "purple")
 plot!(zeros(length(lp₁.IR)), label = false, color = "black", line = :dot)
 plot!(lp₂.IR, label = "SLP: λ optymalny = $(λₒ)", color = "red")
 plot!(lp₂_ci, line = :dash, color = "red", legend = false)
 
-# fantazyjny ==========================================================================================
+# fantazyjny 
 function plt_anime(ir₁, ir₂, iter)
     plot!(ir₁.IR[1:iter], label = "SLP: λ = $(λ)", color = "purple")
     plot!(ir₂.IR[1:iter], label = "SLP: λ optymalny = $(λₒ)", color = "red")
@@ -83,7 +83,7 @@ gif(fantazyjny, "example.gif", fps = 5)
 ```
 
 To estimate the optimal parameter, 
-![](example+param.png)
+![](example_param.png)
 ```julia
 # Optimal parameter evaluation
 # walidacja krzyżowa dla optymalny
@@ -92,8 +92,11 @@ plt = plot(resvec[:,1], resvec[:,2],
     xlabel = "λ",
     ylabel = "MSE",
     label = "oszacowanie", dpi=500)
+param_min = minimum(resvec[:,2]) 
+param_bound = minimum(resvec[:,2]) + 
+  ((maximum(resvec[:,2])-minimum(resvec[:,2]))/2)
 plot!((λₒ .* ones(2, 1)),
-      [minimum(resvec[:,2]) minimum(resvec[:,2])+((maximum(resvec[:,2])-minimum(resvec[:,2]))/2)]',
+      [param_min param_bound]',
       label = "optymalny"
       )
 savefig("param_optimal.png")
