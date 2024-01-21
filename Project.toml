@@ -1,7 +1,7 @@
 name = "SmoothLocalProjections"
 uuid = "991a0c71-be35-46d8-9952-fa18ace04789"
 authors = ["JJ Lee"]
-version = "1.0.0-DEV"
+version = "1.0.0"
 
 [deps]
 CSV = "336ed68f-0bac-5ca0-87d4-7b16caf5d00b"
