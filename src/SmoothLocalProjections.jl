@@ -1,5 +1,5 @@
 
-module Smoothlocalprojection
+module SmoothLocalProjections
 
 export outputcom
 export inputcoms
@@ -15,6 +15,7 @@ export rss
 export matlag
 export eye
 export nan
+
 include("functions.jl")
 
 end

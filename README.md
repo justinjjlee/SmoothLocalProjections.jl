@@ -1,4 +1,7 @@
 # Smooth local projections (SLP)
+
+[![Build Status](https://github.com/justinjjleee/SmoothLocalProjections.jl/actions/workflows/CI.yml/badge.svg?branch=master)](https://github.com/justinjjleee/SmoothLocalProjections.jl/actions/workflows/CI.yml?query=branch%3Amaster)
+
 Implementation of Smooth Local Projections (SLP) based on [Barnichon and Brownlees (2019)](https://www.mitpressjournals.org/doi/abs/10.1162/rest_a_00778) - "Impulse Response Estimation by Smooth Local Projections." Original method of Local Projections is first introduced by [Òscar Jordà (2005)](https://www.aeaweb.org/articles?id=10.1257/0002828053828518)
 
 The code was translated from MATLAB code published from the replication file made available by [C. Brownlees](https://github.com/ctbrownlees/MATLAB-package-lproj).
@@ -18,6 +21,8 @@ Input argument is constructed using a mutable object of following,
 ```julia
 df = CSV.read("data.csv", DataFrame);
 df = convert(Array{Float16}, df[:, 2:4]);
+# Or
+#df = Matrix(df[:, 2:4]);
 T, k = size(df);
 
 ## Parameterization

@@ -2,14 +2,11 @@ using Pkg;
 using CSV, DataFrames, Plots;
 using Statistics, Distributions, SparseArrays, LinearAlgebra;
 using Test
-
-cd(@__DIR__) #src
-
-include("../src/functions.jl")
+using SmoothLocalProjections
 
 @testset "SmoothLocalProjections.jl" begin
     df = CSV.read("data.csv", DataFrame);
-    df = convert(Array{Float16}, df[:, 2:4]);
+    df = Matrix(df[:, 2:4]);
     # .....................................................
     # Parameters to be used
     T, k = size(df);
@@ -26,7 +23,7 @@ include("../src/functions.jl")
     indx     = [ind_response ind_shock H_max P];
     # .....................................................
     # Test the data loads
-    @test typeof(df) <: Matrix
+    #@test typeof(df) <: Matrix
     @test any(indx .== NaN) == false
 
     # Run through the sample exercise

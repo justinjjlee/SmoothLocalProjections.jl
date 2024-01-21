@@ -1,3 +1,8 @@
+using Pkg;
+using CSV, DataFrames, Plots;
+using Statistics, Distributions, SparseArrays, LinearAlgebra;
+using Test
+
 # Define structure
 mutable struct inputcom
     y        :: Vector{Float64}
