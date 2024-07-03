@@ -1,6 +1,10 @@
 # Smooth local projections (SLP)
 
-[![Build Status](https://github.com/justinjjleee/SmoothLocalProjections.jl/actions/workflows/CI.yml/badge.svg?branch=master)](https://github.com/justinjjleee/SmoothLocalProjections.jl/actions/workflows/CI.yml?query=branch%3Amaster)
+If you find my work to be useful, please star this repository!
+
+[![justinjjlee - SmoothLocalProjections](https://img.shields.io/static/v1?label=justinjjlee&message=SmoothLocalProjections&color=blue&logo=github)](https://github.com/justinjjlee/SmoothLocalProjections "Go to GitHub repo")
+[![stars - SmoothLocalProjections](https://img.shields.io/github/stars/justinjjlee/SmoothLocalProjections?style=social)](https://github.com/justinjjlee/SmoothLocalProjections)
+[![forks - SmoothLocalProjections](https://img.shields.io/github/forks/justinjjlee/SmoothLocalProjections?style=social)](https://github.com/justinjjlee/SmoothLocalProjections)
 
 Implementation of Smooth Local Projections (SLP) based on [Barnichon and Brownlees (2019)](https://www.mitpressjournals.org/doi/abs/10.1162/rest_a_00778) - "Impulse Response Estimation by Smooth Local Projections." Original method of Local Projections is first introduced by [Òscar Jordà (2005)](https://www.aeaweb.org/articles?id=10.1257/0002828053828518)
 
