@@ -16,6 +16,10 @@ Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 [compat]
 julia = "1"
+CSV = "0.10.14"
+DataFrames = "1.6.1"
+Distributions = "0.25.109"
+Plots = "1.40.4"
 
 [extras]
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
