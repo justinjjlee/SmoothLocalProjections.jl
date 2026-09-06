@@ -1,0 +1,302 @@
+application,variable,horizon,var_se,lp_se,se_ratio
+Monetary Policy,lip,13,0.023714,0.042952,0.552102
+Monetary Policy,lip,14,0.024216,0.045226,0.535448
+Monetary Policy,lip,15,0.024635,0.047295,0.520871
+Monetary Policy,lip,16,0.024972,0.049379,0.505719
+Monetary Policy,lip,17,0.025232,0.051311,0.491738
+Monetary Policy,lip,18,0.025418,0.053180,0.477957
+Monetary Policy,lip,19,0.025534,0.055224,0.462377
+Monetary Policy,lip,20,0.025585,0.056653,0.451616
+Monetary Policy,lip,21,0.025575,0.058301,0.438681
+Monetary Policy,lip,22,0.025509,0.060061,0.424713
+Monetary Policy,lip,23,0.025390,0.061811,0.410765
+Monetary Policy,lip,24,0.025222,0.063322,0.398313
+Monetary Policy,lip,25,0.025010,0.064671,0.386730
+Monetary Policy,lip,26,0.024758,0.065694,0.376872
+Monetary Policy,lip,27,0.024470,0.066570,0.367582
+Monetary Policy,lip,28,0.024149,0.067819,0.356075
+Monetary Policy,lip,29,0.023799,0.068681,0.346510
+Monetary Policy,lip,30,0.023423,0.069369,0.337660
+Monetary Policy,lip,31,0.023026,0.070241,0.327807
+Monetary Policy,lip,32,0.022609,0.071256,0.317295
+Monetary Policy,lip,33,0.022177,0.071530,0.310033
+Monetary Policy,lip,34,0.021732,0.072420,0.300076
+Monetary Policy,lip,35,0.021276,0.073139,0.290906
+Monetary Policy,lip,36,0.020814,0.073042,0.284959
+Monetary Policy,lip,37,0.020347,0.073811,0.275662
+Monetary Policy,lip,38,0.019878,0.074276,0.267616
+Monetary Policy,lip,39,0.019408,0.074966,0.258892
+Monetary Policy,lip,40,0.018941,0.075081,0.252268
+Monetary Policy,lip,41,0.018477,0.075223,0.245632
+Monetary Policy,lip,42,0.018020,0.075932,0.237312
+Monetary Policy,lip,43,0.017569,0.075711,0.232059
+Monetary Policy,lip,44,0.017128,0.075807,0.225944
+Monetary Policy,lip,45,0.016697,0.075341,0.221620
+Monetary Policy,lip,46,0.016277,0.075973,0.214252
+Monetary Policy,lip,47,0.015870,0.076160,0.208381
+Monetary Policy,lip,48,0.015476,0.076331,0.202754
+Monetary Policy,lip,49,0.015097,0.076278,0.197913
+Monetary Policy,lcpi,13,0.009082,0.018565,0.489165
+Monetary Policy,lcpi,14,0.009100,0.019109,0.476231
+Monetary Policy,lcpi,15,0.009122,0.019657,0.464077
+Monetary Policy,lcpi,16,0.009146,0.020272,0.451175
+Monetary Policy,lcpi,17,0.009171,0.020749,0.442005
+Monetary Policy,lcpi,18,0.009197,0.021242,0.432944
+Monetary Policy,lcpi,19,0.009222,0.021520,0.428504
+Monetary Policy,lcpi,20,0.009246,0.021920,0.421793
+Monetary Policy,lcpi,21,0.009268,0.022211,0.417291
+Monetary Policy,lcpi,22,0.009290,0.022532,0.412299
+Monetary Policy,lcpi,23,0.009309,0.022835,0.407674
+Monetary Policy,lcpi,24,0.009327,0.023213,0.401797
+Monetary Policy,lcpi,25,0.009342,0.023700,0.394198
+Monetary Policy,lcpi,26,0.009356,0.024087,0.388427
+Monetary Policy,lcpi,27,0.009368,0.024452,0.383100
+Monetary Policy,lcpi,28,0.009377,0.024804,0.378052
+Monetary Policy,lcpi,29,0.009385,0.025162,0.372963
+Monetary Policy,lcpi,30,0.009390,0.025495,0.368309
+Monetary Policy,lcpi,31,0.009394,0.025884,0.362922
+Monetary Policy,lcpi,32,0.009396,0.026273,0.357620
+Monetary Policy,lcpi,33,0.009396,0.026413,0.355734
+Monetary Policy,lcpi,34,0.009394,0.026517,0.354282
+Monetary Policy,lcpi,35,0.009391,0.026671,0.352115
+Monetary Policy,lcpi,36,0.009387,0.026716,0.351350
+Monetary Policy,lcpi,37,0.009381,0.026914,0.348548
+Monetary Policy,lcpi,38,0.009374,0.027251,0.343972
+Monetary Policy,lcpi,39,0.009365,0.027397,0.341826
+Monetary Policy,lcpi,40,0.009355,0.027596,0.339010
+Monetary Policy,lcpi,41,0.009345,0.027987,0.333893
+Monetary Policy,lcpi,42,0.009333,0.028278,0.330047
+Monetary Policy,lcpi,43,0.009320,0.028450,0.327606
+Monetary Policy,lcpi,44,0.009307,0.028573,0.325717
+Monetary Policy,lcpi,45,0.009292,0.028697,0.323799
+Monetary Policy,lcpi,46,0.009277,0.028710,0.323121
+Monetary Policy,lcpi,47,0.009261,0.028579,0.324052
+Monetary Policy,lcpi,48,0.009244,0.028602,0.323212
+Monetary Policy,lcpi,49,0.009227,0.028610,0.322510
+Monetary Policy,gs1,13,0.570424,1.370235,0.416297
+Monetary Policy,gs1,14,0.555581,1.397772,0.397476
+Monetary Policy,gs1,15,0.541665,1.428224,0.379258
+Monetary Policy,gs1,16,0.528384,1.453554,0.363512
+Monetary Policy,gs1,17,0.515503,1.484219,0.347323
+Monetary Policy,gs1,18,0.502853,1.501926,0.334805
+Monetary Policy,gs1,19,0.490312,1.521542,0.322247
+Monetary Policy,gs1,20,0.477809,1.545122,0.309237
+Monetary Policy,gs1,21,0.465303,1.567014,0.296936
+Monetary Policy,gs1,22,0.452785,1.575953,0.287308
+Monetary Policy,gs1,23,0.440263,1.598499,0.275423
+Monetary Policy,gs1,24,0.427765,1.626337,0.263024
+Monetary Policy,gs1,25,0.415327,1.652101,0.251393
+Monetary Policy,gs1,26,0.402995,1.655343,0.243451
+Monetary Policy,gs1,27,0.390816,1.657932,0.235725
+Monetary Policy,gs1,28,0.378843,1.660607,0.228135
+Monetary Policy,gs1,29,0.367128,1.665070,0.220488
+Monetary Policy,gs1,30,0.355720,1.670355,0.212961
+Monetary Policy,gs1,31,0.344668,1.683059,0.204787
+Monetary Policy,gs1,32,0.334016,1.694188,0.197154
+Monetary Policy,gs1,33,0.323805,1.697031,0.190807
+Monetary Policy,gs1,34,0.314068,1.705318,0.184170
+Monetary Policy,gs1,35,0.304835,1.699027,0.179417
+Monetary Policy,gs1,36,0.296128,1.699005,0.174295
+Monetary Policy,gs1,37,0.287960,1.708796,0.168517
+Monetary Policy,gs1,38,0.280342,1.706501,0.164279
+Monetary Policy,gs1,39,0.273272,1.719254,0.158948
+Monetary Policy,gs1,40,0.266744,1.722589,0.154851
+Monetary Policy,gs1,41,0.260744,1.732120,0.150535
+Monetary Policy,gs1,42,0.255252,1.747558,0.146062
+Monetary Policy,gs1,43,0.250241,1.740679,0.143761
+Monetary Policy,gs1,44,0.245680,1.738318,0.141332
+Monetary Policy,gs1,45,0.241533,1.751892,0.137870
+Monetary Policy,gs1,46,0.237762,1.767506,0.134518
+Monetary Policy,gs1,47,0.234325,1.784717,0.131295
+Monetary Policy,gs1,48,0.231181,1.791501,0.129043
+Monetary Policy,gs1,49,0.228290,1.786407,0.127793
+Monetary Policy,ebp,13,0.209078,0.737041,0.283672
+Monetary Policy,ebp,14,0.197010,0.722460,0.272693
+Monetary Policy,ebp,15,0.186286,0.727674,0.256002
+Monetary Policy,ebp,16,0.176828,0.719153,0.245883
+Monetary Policy,ebp,17,0.168550,0.718992,0.234425
+Monetary Policy,ebp,18,0.161377,0.718761,0.224521
+Monetary Policy,ebp,19,0.155233,0.738582,0.210177
+Monetary Policy,ebp,20,0.150038,0.742497,0.202073
+Monetary Policy,ebp,21,0.145706,0.742102,0.196342
+Monetary Policy,ebp,22,0.142145,0.746783,0.190343
+Monetary Policy,ebp,23,0.139261,0.740835,0.187979
+Monetary Policy,ebp,24,0.136960,0.741563,0.184691
+Monetary Policy,ebp,25,0.135148,0.750578,0.180058
+Monetary Policy,ebp,26,0.133737,0.750067,0.178299
+Monetary Policy,ebp,27,0.132643,0.771709,0.171882
+Monetary Policy,ebp,28,0.131792,0.764326,0.172429
+Monetary Policy,ebp,29,0.131117,0.774867,0.169212
+Monetary Policy,ebp,30,0.130559,0.787263,0.165839
+Monetary Policy,ebp,31,0.130069,0.792868,0.164048
+Monetary Policy,ebp,32,0.129605,0.786681,0.164749
+Monetary Policy,ebp,33,0.129133,0.778031,0.165974
+Monetary Policy,ebp,34,0.128627,0.798629,0.161060
+Monetary Policy,ebp,35,0.128065,0.799191,0.160243
+Monetary Policy,ebp,36,0.127431,0.801080,0.159074
+Monetary Policy,ebp,37,0.126715,0.802432,0.157914
+Monetary Policy,ebp,38,0.125908,0.801393,0.157111
+Monetary Policy,ebp,39,0.125007,0.810823,0.154173
+Monetary Policy,ebp,40,0.124009,0.812807,0.152569
+Monetary Policy,ebp,41,0.122916,0.801795,0.153301
+Monetary Policy,ebp,42,0.121730,0.807623,0.150726
+Monetary Policy,ebp,43,0.120453,0.823237,0.146317
+Monetary Policy,ebp,44,0.119092,0.834404,0.142727
+Monetary Policy,ebp,45,0.117651,0.864074,0.136159
+Monetary Policy,ebp,46,0.116136,0.864005,0.134416
+Monetary Policy,ebp,47,0.114553,0.882571,0.129795
+Monetary Policy,ebp,48,0.112909,0.877730,0.128638
+Monetary Policy,ebp,49,0.111210,0.877733,0.126702
+Taxes,rgdp,5,2.731820,2.850131,0.958489
+Taxes,rgdp,6,2.655360,3.060928,0.867502
+Taxes,rgdp,7,2.533574,3.259854,0.777205
+Taxes,rgdp,8,2.371516,3.385932,0.700403
+Taxes,rgdp,9,2.207913,3.542481,0.623267
+Taxes,rgdp,10,2.105352,3.647824,0.577153
+Taxes,rgdp,11,2.060069,3.782803,0.544588
+Taxes,rgdp,12,2.034733,3.871633,0.525549
+Taxes,rgdp,13,2.019352,3.983629,0.506913
+Taxes,rgdp,14,1.990664,4.125676,0.482506
+Taxes,rgdp,15,1.934649,4.227319,0.457654
+Taxes,rgdp,16,1.852057,4.313773,0.429336
+Taxes,rgdp,17,1.746568,4.310034,0.405233
+Taxes,rgdp,18,1.624849,4.323440,0.375823
+Taxes,rgdp,19,1.495975,4.297800,0.348079
+Taxes,rgdp,20,1.367888,4.286517,0.319114
+Taxes,rgdp,21,1.246113,4.347284,0.286642
+Taxes,rfedtaxrev,5,0.992819,1.066614,0.930814
+Taxes,rfedtaxrev,6,0.935769,1.152787,0.811746
+Taxes,rfedtaxrev,7,0.856268,1.212663,0.706105
+Taxes,rfedtaxrev,8,0.777764,1.246439,0.623988
+Taxes,rfedtaxrev,9,0.723651,1.290343,0.560820
+Taxes,rfedtaxrev,10,0.682099,1.319103,0.517093
+Taxes,rfedtaxrev,11,0.649113,1.365727,0.475287
+Taxes,rfedtaxrev,12,0.617192,1.393789,0.442816
+Taxes,rfedtaxrev,13,0.585135,1.405181,0.416413
+Taxes,rfedtaxrev,14,0.551369,1.419233,0.388498
+Taxes,rfedtaxrev,15,0.515963,1.418978,0.363616
+Taxes,rfedtaxrev,16,0.479507,1.407188,0.340755
+Taxes,rfedtaxrev,17,0.443439,1.398449,0.317094
+Taxes,rfedtaxrev,18,0.408899,1.399969,0.292077
+Taxes,rfedtaxrev,19,0.376855,1.405585,0.268112
+Taxes,rfedtaxrev,20,0.347727,1.421823,0.244565
+Taxes,rfedtaxrev,21,0.321600,1.435239,0.224074
+Taxes,rgov,5,2.509643,2.636550,0.951866
+Taxes,rgov,6,2.221456,2.691277,0.825428
+Taxes,rgov,7,1.986218,2.780447,0.714352
+Taxes,rgov,8,1.729545,2.841638,0.608644
+Taxes,rgov,9,1.530629,2.855109,0.536102
+Taxes,rgov,10,1.391768,2.932654,0.474576
+Taxes,rgov,11,1.274035,2.994363,0.425478
+Taxes,rgov,12,1.177950,3.014987,0.390698
+Taxes,rgov,13,1.090929,2.967827,0.367585
+Taxes,rgov,14,1.005109,2.996589,0.335418
+Taxes,rgov,15,0.922692,3.008015,0.306744
+Taxes,rgov,16,0.840967,2.983882,0.281836
+Taxes,rgov,17,0.763590,3.008313,0.253827
+Taxes,rgov,18,0.693105,3.033586,0.228477
+Taxes,rgov,19,0.630604,3.076322,0.204986
+Taxes,rgov,20,0.577177,3.045243,0.189534
+Taxes,rgov,21,0.532228,3.064170,0.173694
+Government Purchases,rgdp,5,0.048698,0.057234,0.850858
+Government Purchases,rgdp,6,0.045516,0.062367,0.729808
+Government Purchases,rgdp,7,0.042345,0.066628,0.635537
+Government Purchases,rgdp,8,0.040009,0.070092,0.570812
+Government Purchases,rgdp,9,0.038244,0.072420,0.528081
+Government Purchases,rgdp,10,0.036770,0.073497,0.500300
+Government Purchases,rgdp,11,0.035483,0.074523,0.476140
+Government Purchases,rgdp,12,0.034331,0.076179,0.450659
+Government Purchases,rgdp,13,0.033255,0.076912,0.432373
+Government Purchases,rgdp,14,0.032203,0.078204,0.411778
+Government Purchases,rgdp,15,0.031146,0.079606,0.391247
+Government Purchases,rgdp,16,0.030078,0.081113,0.370818
+Government Purchases,rgdp,17,0.029004,0.082469,0.351697
+Government Purchases,rgdp,18,0.027932,0.083349,0.335117
+Government Purchases,rgdp,19,0.026867,0.083333,0.322408
+Government Purchases,rgdp,20,0.025816,0.083090,0.310703
+Government Purchases,rgdp,21,0.024783,0.082849,0.299134
+Government Purchases,rgov,5,0.020516,0.023689,0.866037
+Government Purchases,rgov,6,0.019819,0.025090,0.789935
+Government Purchases,rgov,7,0.019034,0.026452,0.719585
+Government Purchases,rgov,8,0.018327,0.027967,0.655315
+Government Purchases,rgov,9,0.017692,0.029520,0.599303
+Government Purchases,rgov,10,0.017109,0.030849,0.554612
+Government Purchases,rgov,11,0.016571,0.031851,0.520270
+Government Purchases,rgov,12,0.016067,0.032918,0.488103
+Government Purchases,rgov,13,0.015587,0.034057,0.457685
+Government Purchases,rgov,14,0.015122,0.034601,0.437034
+Government Purchases,rgov,15,0.014666,0.034411,0.426197
+Government Purchases,rgov,16,0.014216,0.034635,0.410455
+Government Purchases,rgov,17,0.013772,0.035325,0.389854
+Government Purchases,rgov,18,0.013333,0.036013,0.370223
+Government Purchases,rgov,19,0.012901,0.036611,0.352371
+Government Purchases,rgov,20,0.012475,0.036955,0.337579
+Government Purchases,rgov,21,0.012057,0.037357,0.322758
+Government Purchases,taxrate,5,0.017357,0.022888,0.758359
+Government Purchases,taxrate,6,0.015005,0.022012,0.681708
+Government Purchases,taxrate,7,0.013004,0.022420,0.579989
+Government Purchases,taxrate,8,0.011490,0.022438,0.512083
+Government Purchases,taxrate,9,0.010392,0.022848,0.454852
+Government Purchases,taxrate,10,0.009593,0.023266,0.412303
+Government Purchases,taxrate,11,0.008982,0.023370,0.384341
+Government Purchases,taxrate,12,0.008477,0.023103,0.366921
+Government Purchases,taxrate,13,0.008026,0.023429,0.342543
+Government Purchases,taxrate,14,0.007602,0.024118,0.315176
+Government Purchases,taxrate,15,0.007192,0.023920,0.300690
+Government Purchases,taxrate,16,0.006794,0.024009,0.282978
+Government Purchases,taxrate,17,0.006406,0.024522,0.261239
+Government Purchases,taxrate,18,0.006030,0.024471,0.246420
+Government Purchases,taxrate,19,0.005669,0.024746,0.229083
+Government Purchases,taxrate,20,0.005324,0.024973,0.213192
+Government Purchases,taxrate,21,0.004998,0.024881,0.200857
+Technology,rgdp,5,0.001475,0.001770,0.833355
+Technology,rgdp,6,0.001432,0.001898,0.754363
+Technology,rgdp,7,0.001365,0.001999,0.682953
+Technology,rgdp,8,0.001296,0.002083,0.622041
+Technology,rgdp,9,0.001234,0.002155,0.572292
+Technology,rgdp,10,0.001179,0.002181,0.540625
+Technology,rgdp,11,0.001130,0.002183,0.517664
+Technology,rgdp,12,0.001085,0.002215,0.489773
+Technology,rgdp,13,0.001041,0.002228,0.467045
+Technology,rgdp,14,0.000998,0.002220,0.449535
+Technology,rgdp,15,0.000956,0.002225,0.429799
+Technology,rgdp,16,0.000917,0.002220,0.413012
+Technology,rgdp,17,0.000879,0.002237,0.393100
+Technology,rgdp,18,0.000845,0.002251,0.375261
+Technology,rgdp,19,0.000813,0.002269,0.358135
+Technology,rgdp,20,0.000784,0.002271,0.344961
+Technology,rgdp,21,0.000757,0.002258,0.335237
+Technology,stockp_sh,5,0.009144,0.012139,0.753256
+Technology,stockp_sh,6,0.008988,0.012865,0.698621
+Technology,stockp_sh,7,0.008902,0.013690,0.650219
+Technology,stockp_sh,8,0.008888,0.014110,0.629931
+Technology,stockp_sh,9,0.008923,0.014497,0.615469
+Technology,stockp_sh,10,0.008973,0.014917,0.601548
+Technology,stockp_sh,11,0.009020,0.015368,0.586905
+Technology,stockp_sh,12,0.009054,0.015768,0.574203
+Technology,stockp_sh,13,0.009075,0.016195,0.560351
+Technology,stockp_sh,14,0.009085,0.016510,0.550230
+Technology,stockp_sh,15,0.009087,0.016833,0.539818
+Technology,stockp_sh,16,0.009085,0.017065,0.532358
+Technology,stockp_sh,17,0.009080,0.017336,0.523782
+Technology,stockp_sh,18,0.009075,0.017453,0.519986
+Technology,stockp_sh,19,0.009071,0.017763,0.510657
+Technology,stockp_sh,20,0.009066,0.017968,0.504578
+Technology,stockp_sh,21,0.009062,0.018153,0.499205
+Technology,labor_prod,5,0.000668,0.000910,0.734021
+Technology,labor_prod,6,0.000680,0.000977,0.696259
+Technology,labor_prod,7,0.000703,0.001038,0.677479
+Technology,labor_prod,8,0.000730,0.001101,0.663284
+Technology,labor_prod,9,0.000759,0.001162,0.652910
+Technology,labor_prod,10,0.000786,0.001234,0.636446
+Technology,labor_prod,11,0.000810,0.001280,0.632699
+Technology,labor_prod,12,0.000832,0.001335,0.623183
+Technology,labor_prod,13,0.000851,0.001378,0.617603
+Technology,labor_prod,14,0.000867,0.001432,0.605518
+Technology,labor_prod,15,0.000881,0.001476,0.597032
+Technology,labor_prod,16,0.000893,0.001502,0.594716
+Technology,labor_prod,17,0.000904,0.001551,0.582604
+Technology,labor_prod,18,0.000912,0.001588,0.574248
+Technology,labor_prod,19,0.000919,0.001617,0.568254
+Technology,labor_prod,20,0.000924,0.001640,0.563540
+Technology,labor_prod,21,0.000929,0.001671,0.555819
