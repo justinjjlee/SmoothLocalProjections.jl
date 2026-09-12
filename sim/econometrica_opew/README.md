@@ -41,35 +41,35 @@ Replicating this paper in **Julia** equips researchers with tools to:
 
 The DGP is a stationary multivariate structural $\mathrm{VARMA}(1, \infty)$ process that is local to an $\mathrm{SVAR}(1)$ model:
 
-$$\mathbf{y}_t = \mathbf{A} \mathbf{y}_{t-1} + \mathbf{H} \left[ \mathbf{I}_m + T^{-\zeta} \boldsymbol{\alpha}(L) \right] \boldsymbol{\varepsilon}_t, \quad \forall t \in \mathbb{Z} \tag{1}$$
+$$\mathbf{y}_t = \mathbf{A} \mathbf{y}_{t-1} + \mathbf{H} \left[ \mathbf{I}_m + T^{-\zeta} \boldsymbol{\alpha}(L) \right] \boldsymbol{\varepsilon}_t, \quad \forall t \in \mathbb{Z} \qquad (1)$$
 
 where:
-- **Observed variables**: $\mathbf{y}_t = (y_{1,t}, \dots, y_{n,t})' \in \mathbb{R}^n$.
-- **Structural shocks**: $\boldsymbol{\varepsilon}_t = (\varepsilon_{1,t}, \dots, \varepsilon_{m,t})' \in \mathbb{R}^m$, with $\boldsymbol{\varepsilon}_t \overset{\mathrm{i.i.d.}}{\sim} (\mathbf{0}, \mathbf{D})$, $\mathbf{D} = \mathrm{diag}(\sigma_1^2, \dots, \sigma_m^2)$, $\sigma_j^2 > 0$, $\mathbb{E}[\varepsilon_{j,t}^4] < \infty$.
+- **Observed variables**: $\mathbf{y}_t \in \mathbb{R}^n$ is the $n$-vector of observed variables with coordinates $y_{i,t}$ ($i = 1, \dots, n$).
+- **Structural shocks**: $\boldsymbol{\varepsilon}_t \in \mathbb{R}^m$ is the $m$-vector of structural shocks with elements $\varepsilon_{j,t}$ satisfying $\boldsymbol{\varepsilon}_t \overset{\mathrm{i.i.d.}}{\sim} (\mathbf{0}, \mathbf{D})$, $\mathbf{D} = \mathrm{diag}(\sigma_1^2, \dots, \sigma_m^2)$, $\sigma_j^2 > 0$, and finite fourth moments $\mathbb{E}[\varepsilon_{j,t}^4] < \infty$.
 - **Transition matrix**: $\mathbf{A} \in \mathbb{R}^{n \times n}$ has spectral radius $\rho(\mathbf{A}) < 1$ (stability).
-- **Structural impact matrix**: $\mathbf{H} \in \mathbb{R}^{n \times m}$. Under recursive identification (Cholesky), the first $j^{\ast}$ rows have the form $(\tilde{\mathbf{H}}, \mathbf{0}_{j^{\ast} \times (m - j^{\ast})})$, where $\tilde{\mathbf{H}}$ is $j^{\ast} \times j^{\ast}$ lower triangular with unit diagonal ($H_{j^{\ast},j^{\ast}} = 1$).
-- **Misspecification polynomial**: $\boldsymbol{\alpha}(L) = \sum_{\ell=1}^\infty \boldsymbol{\alpha}_\ell L^\ell$ is an $m \times m$ lag polynomial satisfying absolute summability $\sum_{\ell=1}^\infty \|\boldsymbol{\alpha}_\ell\| < \infty$.
+- **Structural impact matrix**: $\mathbf{H} \in \mathbb{R}^{n \times m}$. Under recursive identification (Cholesky), the leading $j^{\ast} \times j^{\ast}$ block $\tilde{\mathbf{H}}$ is lower triangular with unit diagonal ($H_{j^{\ast},j^{\ast}} = 1$).
+- **Misspecification lag polynomial**: an $m \times m$ matrix polynomial $\boldsymbol{\alpha}(L) = \sum_{\ell \ge 1} \boldsymbol{\alpha}_\ell L^\ell$ satisfying absolute summability $\sum_{\ell \ge 1} \|\boldsymbol{\alpha}_\ell\| < \infty$.
 - **Misspecification rate**: $\zeta > 0$ determines the rate of local misspecification ($\zeta = 1/2$ is the canonical case balancing asymptotic variance and bias).
 - **Stationary covariance matrix**: $\mathbf{S} \equiv \mathrm{Var}(\tilde{\mathbf{y}}_t)$ for unperturbed $\tilde{\mathbf{y}}_t \equiv (\mathbf{I} - \mathbf{A}L)^{-1} \mathbf{H} \boldsymbol{\varepsilon}_t$ satisfies the discrete Lyapunov equation:
 
-$$\mathbf{S} = \mathbf{A} \mathbf{S} \mathbf{A}' + \boldsymbol{\Sigma}, \quad \text{where } \boldsymbol{\Sigma} \equiv \mathbf{H} \mathbf{D} \mathbf{H}' \tag{2}$$
+$$\mathbf{S} = \mathbf{A} \mathbf{S} \mathbf{A}' + \boldsymbol{\Sigma}, \quad \text{where } \boldsymbol{\Sigma} \equiv \mathbf{H} \mathbf{D} \mathbf{H}' \qquad (2)$$
 
-$$\mathrm{vec}(\mathbf{S}) = (\mathbf{I}_{n^2} - \mathbf{A} \otimes \mathbf{A})^{-1} \mathrm{vec}(\boldsymbol{\Sigma}) \tag{3}$$
+$$\mathrm{vec}(\mathbf{S}) = (\mathbf{I}_{n^2} - \mathbf{A} \otimes \mathbf{A})^{-1} \mathrm{vec}(\boldsymbol{\Sigma}) \qquad (3)$$
 
 #### Companion Form Representation for SVAR($p$)
 A higher-order local-to-$\mathrm{SVAR}(p)$ model in observable $\check{\mathbf{y}}_t \in \mathbb{R}^{\check{n}}$:
 
-$$\check{\mathbf{y}}_t = \sum_{\ell=1}^p \check{\mathbf{A}}_\ell \check{\mathbf{y}}_{t-\ell} + \check{\mathbf{H}} \left[ \mathbf{I} + T^{-\zeta} \boldsymbol{\alpha}(L) \right] \boldsymbol{\varepsilon}_t \tag{4}$$
+$$\check{\mathbf{y}}_t = \sum_{\ell=1}^p \check{\mathbf{A}}_\ell \check{\mathbf{y}}_{t-\ell} + \check{\mathbf{H}} \left[ \mathbf{I} + T^{-\zeta} \boldsymbol{\alpha}(L) \right] \boldsymbol{\varepsilon}_t \qquad (4)$$
 
 maps directly into (1) by setting $n = \check{n} p$ and stacking:
 
-$$\mathbf{y}_t = \begin{pmatrix} \check{\mathbf{y}}_t \\ \check{\mathbf{y}}_{t-1} \\ \vdots \\ \check{\mathbf{y}}_{t-p+1} \end{pmatrix}, \quad \mathbf{A} = \begin{pmatrix} \check{\mathbf{A}}_1 & \check{\mathbf{A}}_2 & \dots & \check{\mathbf{A}}_{p-1} & \check{\mathbf{A}}_p \\ \mathbf{I}_{\check{n}} & \mathbf{0} & \dots & \mathbf{0} & \mathbf{0} \\ \mathbf{0} & \mathbf{I}_{\check{n}} & \dots & \mathbf{0} & \mathbf{0} \\ \vdots & \vdots & \ddots & \vdots & \vdots \\ \mathbf{0} & \mathbf{0} & \dots & \mathbf{I}_{\check{n}} & \mathbf{0} \end{pmatrix}, \quad \mathbf{H} = \begin{pmatrix} \check{\mathbf{H}} \\ \mathbf{0} \\ \vdots \\ \mathbf{0} \end{pmatrix} \tag{5}$$
+$$\mathbf{y}_t = \begin{pmatrix} \check{\mathbf{y}}_t \\ \check{\mathbf{y}}_{t-1} \\ \vdots \\ \check{\mathbf{y}}_{t-p+1} \end{pmatrix}, \quad \mathbf{A} = \begin{pmatrix} \check{\mathbf{A}}_1 & \check{\mathbf{A}}_2 & \dots & \check{\mathbf{A}}_{p-1} & \check{\mathbf{A}}_p \\ \mathbf{I}_{\check{n}} & \mathbf{0} & \dots & \mathbf{0} & \mathbf{0} \\ \mathbf{0} & \mathbf{I}_{\check{n}} & \dots & \mathbf{0} & \mathbf{0} \\ \vdots & \vdots & \ddots & \vdots & \vdots \\ \mathbf{0} & \mathbf{0} & \dots & \mathbf{I}_{\check{n}} & \mathbf{0} \end{pmatrix}, \quad \mathbf{H} = \begin{pmatrix} \check{\mathbf{H}} \\ \mathbf{0} \\ \vdots \\ \mathbf{0} \end{pmatrix} \qquad (5)$$
 
 ### 2.2 Target Parameter: Impulse Response Function
 
 The structural impulse response at horizon $h \ge 0$ of variable $i^{\ast}$ to shock $j^{\ast}$ is:
 
-$$\theta_{h,T} \equiv \mathbf{e}_{i^{\ast},n}' \left( \mathbf{A}^h \mathbf{H} + T^{-\zeta} \sum_{\ell=1}^h \mathbf{A}^{h-\ell} \mathbf{H} \boldsymbol{\alpha}_\ell \right) \mathbf{e}_{j^{\ast},m} = \mathbb{E}[y_{i^{\ast},t+h} \mid \varepsilon_{j^{\ast},t} = 1] - \mathbb{E}[y_{i^{\ast},t+h} \mid \varepsilon_{j^{\ast},t} = 0] \tag{6}$$
+$$\theta_{h,T} \equiv \mathbf{e}_{i^{\ast},n}' \left( \mathbf{A}^h \mathbf{H} + T^{-\zeta} \sum_{\ell=1}^h \mathbf{A}^{h-\ell} \mathbf{H} \boldsymbol{\alpha}_\ell \right) \mathbf{e}_{j^{\ast},m} = \mathbb{E}[y_{i^{\ast},t+h} \mid \varepsilon_{j^{\ast},t} = 1] - \mathbb{E}[y_{i^{\ast},t+h} \mid \varepsilon_{j^{\ast},t} = 0] \qquad (6)$$
 
 where $\mathbf{e}_{k,d}$ denotes the $k$-th elementary basis vector in $\mathbb{R}^d$.
 
@@ -80,16 +80,16 @@ where $\mathbf{e}_{k,d}$ denotes the $k$-th elementary basis vector in $\mathbb{
 #### 1. Local Projection Estimator $\hat{\beta}_h$
 Estimated via OLS equation-by-equation:
 
-$$y_{i^{\ast},t+h} = \hat{\beta}_h y_{j^{\ast},t} + \hat{\boldsymbol{\omega}}_h' \mathbf{y}_{\underline{j}^{\ast},t} + \hat{\boldsymbol{\gamma}}_h' \mathbf{y}_{t-1} + \hat{\xi}_{i^{\ast},h,t} \tag{7}$$
+$$y_{i^{\ast},t+h} = \hat{\beta}_h y_{j^{\ast},t} + \hat{\boldsymbol{\omega}}_h' \mathbf{y}_{\underline{j}^{\ast},t} + \hat{\boldsymbol{\gamma}}_h' \mathbf{y}_{t-1} + \hat{\xi}_{i^{\ast},h,t} \qquad (7)$$
 
-where $\mathbf{y}_{\underline{j}^{\ast},t} \equiv (y_{1,t}, \dots, y_{j^{\ast}-1,t})'$ controls for variables ordered causally prior to $y_{j^{\ast},t}$.
+where $\mathbf{y}_{\underline{j}^{\ast},t}$ controls for variables ordered causally prior to $y_{j^{\ast},t}$.
 
 #### 2. SVAR Estimator $\hat{\delta}_h$
 Estimated from companion OLS transition matrix $\hat{\mathbf{A}}$ and Cholesky factor $\hat{\mathbf{C}}$ of the residual covariance $\hat{\boldsymbol{\Sigma}} = \frac{1}{T} \sum_{t=1}^T \hat{\mathbf{u}}_t \hat{\mathbf{u}}_t'$:
 
-$$\hat{\mathbf{A}} = \left( \sum_{t=2}^T \mathbf{y}_t \mathbf{y}_{t-1}' \right) \left( \sum_{t=2}^T \mathbf{y}_{t-1} \mathbf{y}_{t-1}' \right)^{-1}, \quad \hat{\boldsymbol{\nu}} \equiv \hat{C}_{j^{\ast},j^{\ast}}^{-1} \hat{\mathbf{C}}_{\bullet, j^{\ast}} \tag{8}$$
+$$\hat{\mathbf{A}} = \left( \sum_{t=2}^T \mathbf{y}_t \mathbf{y}_{t-1}' \right) \left( \sum_{t=2}^T \mathbf{y}_{t-1} \mathbf{y}_{t-1}' \right)^{-1}, \quad \hat{\boldsymbol{\nu}} \equiv \hat{C}_{j^{\ast},j^{\ast}}^{-1} \hat{\mathbf{C}}_{\bullet, j^{\ast}} \qquad (8)$$
 
-$$\hat{\delta}_h \equiv \mathbf{e}_{i^{\ast},n}' \hat{\mathbf{A}}^h \hat{\boldsymbol{\nu}} \tag{9}$$
+$$\hat{\delta}_h \equiv \mathbf{e}_{i^{\ast},n}' \hat{\mathbf{A}}^h \hat{\boldsymbol{\nu}} \qquad (9)$$
 
 *(Note: At horizon $h = 0$, both estimators numerically coincide: $\hat{\beta}_0 = \hat{\delta}_0$.)*
 
@@ -100,35 +100,39 @@ $$\hat{\delta}_h \equiv \mathbf{e}_{i^{\ast},n}' \hat{\mathbf{A}}^h \hat{\boldsy
 #### Proposition 3.1 (Double Robustness of LP)
 Under Assumption 2.1 in the paper:
 
-$$\hat{\beta}_h - \theta_{h,T} = \frac{1}{\sigma_{j^{\ast}}^2} \frac{1}{T} \sum_{t=1}^T \xi_{i^{\ast},h,t} \varepsilon_{j^{\ast},t} + O_p(T^{-2\zeta}) + o_p(T^{-1/2}) \tag{10}$$
+$$\hat{\beta}_h - \theta_{h,T} = \frac{1}{\sigma_{j^{\ast}}^2} \frac{1}{T} \sum_{t=1}^T \xi_{i^{\ast},h,t} \varepsilon_{j^{\ast},t} + O_p(T^{-2\zeta}) + o_p(T^{-1/2}) \qquad (10)$$
 
-where $\boldsymbol{\xi}_{h,t} \equiv \mathbf{A}^h \mathbf{H}_{\bar{j}^{\ast}} \boldsymbol{\varepsilon}_{\bar{j}^{\ast},t} + \sum_{\ell=1}^h \mathbf{A}^{h-\ell} \mathbf{H} \boldsymbol{\varepsilon}_{t+\ell}$, $\mathbf{H}_{\bar{j}^{\ast}} \equiv (\mathbf{H}_{\bullet, j^{\ast}+1}, \dots, \mathbf{H}_{\bullet, m})$, and $\boldsymbol{\varepsilon}_{\bar{j}^{\ast},t} \equiv (\varepsilon_{j^{\ast}+1,t}, \dots, \varepsilon_{m,t})'$.
+where:
+
+$$\boldsymbol{\xi}_{h,t} \equiv \mathbf{A}^h \mathbf{H}_{\bar{j}^{\ast}} \boldsymbol{\varepsilon}_{\bar{j}^{\ast},t} + \sum_{\ell=1}^h \mathbf{A}^{h-\ell} \mathbf{H} \boldsymbol{\varepsilon}_{t+\ell}$$
+
+with impact submatrix $\mathbf{H}_{\bar{j}^{\ast}} \equiv (\mathbf{H}_{\bullet, j^{\ast}+1}, \dots, \mathbf{H}_{\bullet, m})$ selecting shocks ordered after $j^{\ast}$, and shock subset $\boldsymbol{\varepsilon}_{\bar{j}^{\ast},t} \equiv (\varepsilon_{j^{\ast}+1,t}, \dots, \varepsilon_{m,t})'$.
 
 > **Key Insight**: The asymptotic bias of LP is $O_p(T^{-2\zeta})$. As long as $\zeta > 1/4$, $T^{-2\zeta} = o(T^{-1/2})$, so the bias vanishes faster than the standard error! LP confidence intervals achieve nominal $1-a$ coverage even when misspecification is large enough to be detected with probability approaching 1.
 
 #### Frisch-Waugh Mechanics of Double Robustness
 In the moment condition:
 
-$$\mathbb{E}\left[ \left( y_{i^{\ast},t+h} - \theta_{0,h} y_{j^{\ast},t} - \gamma_0(\mathbf{y}^{t-1}) \right) \left( y_{j^{\ast},t} - \nu_0(\mathbf{y}^{t-1}) \right) \right] = 0 \tag{11}$$
+$$\mathbb{E}\left[ \left( y_{i^{\ast},t+h} - \theta_{0,h} y_{j^{\ast},t} - \gamma_0(\mathbf{y}^{t-1}) \right) \left( y_{j^{\ast},t} - \nu_0(\mathbf{y}^{t-1}) \right) \right] = 0 \qquad (11)$$
 
 If evaluated at approximations $\gamma(\cdot)$ and $\nu(\cdot)$, the expectation equals:
 
-$$\mathbb{E}\left[ (\gamma_0(\mathbf{y}^{t-1}) - \gamma(\mathbf{y}^{t-1})) (\nu_0(\mathbf{y}^{t-1}) - \nu(\mathbf{y}^{t-1})) \right] \tag{12}$$
+$$\mathbb{E}\left[ (\gamma_0(\mathbf{y}^{t-1}) - \gamma(\mathbf{y}^{t-1})) (\nu_0(\mathbf{y}^{t-1}) - \nu(\mathbf{y}^{t-1})) \right] \qquad (12)$$
 
 Both estimation error in the outcome controls ($\gamma_0 - \hat{\gamma} \sim T^{-\zeta}$) and error in the treatment shock isolation ($\nu_0 - \hat{\nu} \sim T^{-\zeta}$) multiply together:
 
-$$\text{Bias} \propto \|\hat{\gamma} - \gamma_0\| \times \|\hat{\nu} - \nu_0\| = O(T^{-\zeta}) \times O(T^{-\zeta}) = O(T^{-2\zeta}) \tag{13}$$
+$$\text{Bias} \propto \|\hat{\gamma} - \gamma_0\| \times \|\hat{\nu} - \nu_0\| = O(T^{-\zeta}) \times O(T^{-\zeta}) = O(T^{-2\zeta}) \qquad (13)$$
 
 #### Proposition 3.2 (Fragility of SVAR)
 Under Assumption 2.1:
 
-$$\hat{\delta}_h - \theta_{h,T} = \mathrm{trace}\left( \mathbf{S}^{-1} \boldsymbol{\Psi}_h \mathbf{H} \frac{1}{T}\sum_{t=1}^T \boldsymbol{\varepsilon}_t \tilde{\mathbf{y}}_{t-1}' \right) + \frac{1}{\sigma_{j^{\ast}}^2} \mathbf{e}_{i^{\ast},n}' \mathbf{A}^h \frac{1}{T}\sum_{t=1}^T \boldsymbol{\xi}_{0,t} \varepsilon_{j^{\ast},t} + T^{-\zeta} \mathrm{aBias}(\hat{\delta}_h) + o_p(T^{-1/2} + T^{-\zeta}) \tag{14}$$
+$$\hat{\delta}_h - \theta_{h,T} = \mathrm{trace}\left( \mathbf{S}^{-1} \boldsymbol{\Psi}_h \mathbf{H} \frac{1}{T}\sum_{t=1}^T \boldsymbol{\varepsilon}_t \tilde{\mathbf{y}}_{t-1}' \right) + \frac{1}{\sigma_{j^{\ast}}^2} \mathbf{e}_{i^{\ast},n}' \mathbf{A}^h \frac{1}{T}\sum_{t=1}^T \boldsymbol{\xi}_{0,t} \varepsilon_{j^{\ast},t} + T^{-\zeta} \mathrm{aBias}(\hat{\delta}_h) + o_p(T^{-1/2} + T^{-\zeta}) \qquad (14)$$
 
 where:
 
-$$\boldsymbol{\Psi}_h \equiv \sum_{\ell=1}^h \mathbf{A}^{h-\ell} \mathbf{H}_{\bullet, j^{\ast}} \mathbf{e}_{i^{\ast},n}' \mathbf{A}^{\ell-1} \tag{15}$$
+$$\boldsymbol{\Psi}_h \equiv \sum_{\ell=1}^h \mathbf{A}^{h-\ell} \mathbf{H}_{\bullet, j^{\ast}} \mathbf{e}_{i^{\ast},n}' \mathbf{A}^{\ell-1} \qquad (15)$$
 
-$$\mathrm{aBias}(\hat{\delta}_h) \equiv \mathrm{trace}\left( \mathbf{S}^{-1} \boldsymbol{\Psi}_h \mathbf{H} \sum_{\ell=1}^\infty \boldsymbol{\alpha}_\ell \mathbf{D} \mathbf{H}' (\mathbf{A}')^{\ell-1} \right) - \mathbf{e}_{i^{\ast},n}' \sum_{\ell=1}^h \mathbf{A}^{h-\ell} \mathbf{H} \boldsymbol{\alpha}_\ell \mathbf{e}_{j^{\ast},m} \tag{16}$$
+$$\mathrm{aBias}(\hat{\delta}_h) \equiv \mathrm{trace}\left( \mathbf{S}^{-1} \boldsymbol{\Psi}_h \mathbf{H} \sum_{\ell=1}^\infty \boldsymbol{\alpha}_\ell \mathbf{D} \mathbf{H}' (\mathbf{A}')^{\ell-1} \right) - \mathbf{e}_{i^{\ast},n}' \sum_{\ell=1}^h \mathbf{A}^{h-\ell} \mathbf{H} \boldsymbol{\alpha}_\ell \mathbf{e}_{j^{\ast},m} \qquad (16)$$
 
 > **Key Insight**: SVAR suffers from first-order bias $O_p(T^{-\zeta})$. When $\zeta = 1/2$, the bias is of order $T^{-1/2}$, placing it on the exact same scale as the standard error! This induces substantial undercoverage.
 
@@ -138,15 +142,15 @@ $$\mathrm{aBias}(\hat{\delta}_h) \equiv \mathrm{trace}\left( \mathbf{S}^{-1} \bo
 
 For response variables $i^{\ast}$, shock $j^{\ast}$, and horizon $h$:
 
-$$\psi_{h,h} \equiv \mathbf{e}_{i^{\ast},n}' \mathbf{A}^h \mathbf{H}_{\bar{j}^{\ast}} \mathbf{D}_{\bar{j}^{\ast}} \mathbf{H}_{\bar{j}^{\ast}}' (\mathbf{A}')^h \mathbf{e}_{i^{\ast},n} \tag{17}$$
+$$\psi_{h,h} \equiv \mathbf{e}_{i^{\ast},n}' \mathbf{A}^h \mathbf{H}_{\bar{j}^{\ast}} \mathbf{D}_{\bar{j}^{\ast}} \mathbf{H}_{\bar{j}^{\ast}}' (\mathbf{A}')^h \mathbf{e}_{i^{\ast},n} \qquad (17)$$
 
-$$\mathrm{aVar}(\hat{\beta}_h) = \sigma_{j^{\ast}}^{-2} \left[ \psi_{h,h} + \sum_{\ell=1}^h \mathbf{e}_{i^{\ast},n}' \mathbf{A}^{h-\ell} \boldsymbol{\Sigma} (\mathbf{A}')^{h-\ell} \mathbf{e}_{i^{\ast},n} \right] \tag{18}$$
+$$\mathrm{aVar}(\hat{\beta}_h) = \sigma_{j^{\ast}}^{-2} \left[ \psi_{h,h} + \sum_{\ell=1}^h \mathbf{e}_{i^{\ast},n}' \mathbf{A}^{h-\ell} \boldsymbol{\Sigma} (\mathbf{A}')^{h-\ell} \mathbf{e}_{i^{\ast},n} \right] \qquad (18)$$
 
-$$\mathrm{aVar}(\hat{\delta}_h) = \sigma_{j^{\ast}}^{-2} \psi_{h,h} + \mathrm{trace}\left( \boldsymbol{\Psi}_h \boldsymbol{\Sigma} \boldsymbol{\Psi}_h' \mathbf{S}^{-1} \right) \tag{19}$$
+$$\mathrm{aVar}(\hat{\delta}_h) = \sigma_{j^{\ast}}^{-2} \psi_{h,h} + \mathrm{trace}\left( \boldsymbol{\Psi}_h \boldsymbol{\Sigma} \boldsymbol{\Psi}_h' \mathbf{S}^{-1} \right) \qquad (19)$$
 
-$$\mathrm{aCov}(\hat{\beta}_h, \hat{\delta}_h) = \mathrm{aVar}(\hat{\delta}_h) \tag{20}$$
+$$\mathrm{aCov}(\hat{\beta}_h, \hat{\delta}_h) = \mathrm{aVar}(\hat{\delta}_h) \qquad (20)$$
 
-$$\mathrm{aVar}(\hat{\beta}_h - \hat{\delta}_h) = \mathrm{aVar}(\hat{\beta}_h) - \mathrm{aVar}(\hat{\delta}_h) \ge 0 \tag{21}$$
+$$\mathrm{aVar}(\hat{\beta}_h - \hat{\delta}_h) = \mathrm{aVar}(\hat{\beta}_h) - \mathrm{aVar}(\hat{\delta}_h) \ge 0 \qquad (21)$$
 
 Equation (20) proves that $\hat{\delta}_h$ is the optimal projection of $\hat{\beta}_h$, so $\hat{\beta}_h - \hat{\delta}_h$ is asymptotically orthogonal to $\hat{\delta}_h$.
 
@@ -156,40 +160,40 @@ Equation (20) proves that $\hat{\delta}_h$ is the optimal projection of $\hat{\b
 
 Define the misspecification norm and noise-to-signal bound:
 
-$$\|\boldsymbol{\alpha}(L)\| \equiv \sqrt{ \sum_{\ell=1}^\infty \mathrm{trace}\left( \mathbf{D} \boldsymbol{\alpha}_\ell' \mathbf{D}^{-1} \boldsymbol{\alpha}_\ell \right) } \le M \tag{22}$$
+$$\|\boldsymbol{\alpha}(L)\| \equiv \sqrt{ \sum_{\ell=1}^\infty \mathrm{trace}\left( \mathbf{D} \boldsymbol{\alpha}_\ell' \mathbf{D}^{-1} \boldsymbol{\alpha}_\ell \right) } \le M \qquad (22)$$
 
 Scaled bias is $b_h \equiv \mathrm{aBias}(\hat{\delta}_h) / \sqrt{\mathrm{aVar}(\hat{\delta}_h)}$.
 
 #### Proposition 4.1 (Worst-Case Scaled Bias)
-$$\max_{\|\boldsymbol{\alpha}(L)\| \le M} |b_h| = M \sqrt{ \frac{\mathrm{aVar}(\hat{\beta}_h)}{\mathrm{aVar}(\hat{\delta}_h)} - 1 } \tag{23}$$
+$$\max_{\|\boldsymbol{\alpha}(L)\| \le M} |b_h| = M \sqrt{ \frac{\mathrm{aVar}(\hat{\beta}_h)}{\mathrm{aVar}(\hat{\delta}_h)} - 1 } \qquad (23)$$
 
 The relative precision $\tau \equiv \sqrt{\mathrm{aVar}(\hat{\beta}_h)/\mathrm{aVar}(\hat{\delta}_h) - 1}$ is a **sufficient statistic** for worst-case bias and coverage across all models, dimensions, and horizons!
 
 #### Corollary 4.3 (Worst-Case Asymptotic Coverage of Conventional SVAR CI)
 For nominal level $1-a$ (critical value $z_{1-a/2}$):
 
-$$\inf_{\|\boldsymbol{\alpha}(L)\| \le M} \lim_{T \to \infty} P(\theta_{h,T} \in \mathrm{CI}(\hat{\delta}_h)) = 1 - r\left( M \sqrt{\frac{\mathrm{aVar}(\hat{\beta}_h)}{\mathrm{aVar}(\hat{\delta}_h)} - 1}; z_{1-a/2} \right) \tag{24}$$
+$$\inf_{\|\boldsymbol{\alpha}(L)\| \le M} \lim_{T \to \infty} P(\theta_{h,T} \in \mathrm{CI}(\hat{\delta}_h)) = 1 - r\left( M \sqrt{\frac{\mathrm{aVar}(\hat{\beta}_h)}{\mathrm{aVar}(\hat{\delta}_h)} - 1}; z_{1-a/2} \right) \qquad (24)$$
 
 where the two-tailed folded normal probability function is:
 
-$$r(b; c) \equiv \mathbb{P}_{Z \sim \mathcal{N}(0,1)}(|Z + b| > c) = \Phi(-c - b) + \Phi(-c + b) \tag{25}$$
+$$r(b; c) \equiv \mathbb{P}_{Z \sim \mathcal{N}(0,1)}(|Z + b| > c) = \Phi(-c - b) + \Phi(-c + b) \qquad (25)$$
 
 #### Corollary 4.4 (Worst-Case Joint Undercoverage and Non-Detection)
 Consider the joint event $\mathcal{A}_T$ that the VAR CI fails to cover $\theta_{h,T}$ **and** the Hausman test fails to reject correct VAR specification:
 
-$$\sup_{\boldsymbol{\alpha}(L)} \lim_{T \to \infty} P(\mathcal{A}_T) = \sup_{b \ge 0} r(b; z_{1-a/2}) \left[ 1 - r\left( \frac{b}{\sqrt{\mathrm{aVar}(\hat{\beta}_h)/\mathrm{aVar}(\hat{\delta}_h) - 1}}; z_{1-a/2} \right) \right] \tag{26}$$
+$$\sup_{\boldsymbol{\alpha}(L)} \lim_{T \to \infty} P(\mathcal{A}_T) = \sup_{b \ge 0} r(b; z_{1-a/2}) \left[ 1 - r\left( \frac{b}{\sqrt{\mathrm{aVar}(\hat{\beta}_h)/\mathrm{aVar}(\hat{\delta}_h) - 1}}; z_{1-a/2} \right) \right] \qquad (26)$$
 
 #### Equation (4.1): Least-Favorable MA Polynomial $\boldsymbol{\alpha}_{h,M}^\dagger(L)$
 The misspecification direction maximizing VAR bias is:
 
-$$\boldsymbol{\alpha}_{\ell,h,M}^\dagger \propto \mathbf{D}^{1/2} \mathbf{H}' \boldsymbol{\Psi}_h' \mathbf{S}^{-1} \mathbf{A}^{\ell-1} \mathbf{H} \mathbf{D}^{1/2} - \mathbf{1}(\ell \le h) \sigma_{j^{\ast}}^{-1} \mathbf{D}^{1/2} \mathbf{H}' (\mathbf{A}')^{h-\ell} \mathbf{e}_{i^{\ast},n} \mathbf{e}_{j^{\ast},m}', \quad \ell \ge 1 \tag{27}$$
+$$\boldsymbol{\alpha}_{\ell,h,M}^\dagger \propto \mathbf{D}^{1/2} \mathbf{H}' \boldsymbol{\Psi}_h' \mathbf{S}^{-1} \mathbf{A}^{\ell-1} \mathbf{H} \mathbf{D}^{1/2} - \mathbf{1}(\ell \le h) \sigma_{j^{\ast}}^{-1} \mathbf{D}^{1/2} \mathbf{H}' (\mathbf{A}')^{h-\ell} \mathbf{e}_{i^{\ast},n} \mathbf{e}_{j^{\ast},m}', \quad \ell \ge 1 \qquad (27)$$
 
 normalized so that $\|\boldsymbol{\alpha}^\dagger(L; h, M)\| = M$.
 
 #### Section 4.3: Bias-Aware VAR Confidence Intervals
 To guarantee valid coverage under bound $M$:
 
-$$\mathrm{CI}_B(\hat{\delta}_h; M) \equiv \left[ \hat{\delta}_h \pm \mathrm{cv}_{1-a}\left( M \sqrt{\frac{\mathrm{aVar}(\hat{\beta}_h)}{\mathrm{aVar}(\hat{\delta}_h)} - 1} \right) \sqrt{\mathrm{aVar}(\hat{\delta}_h)/T} \right] \tag{28}$$
+$$\mathrm{CI}_B(\hat{\delta}_h; M) \equiv \left[ \hat{\delta}_h \pm \mathrm{cv}_{1-a}\left( M \sqrt{\frac{\mathrm{aVar}(\hat{\beta}_h)}{\mathrm{aVar}(\hat{\delta}_h)} - 1} \right) \sqrt{\mathrm{aVar}(\hat{\delta}_h)/T} \right] \qquad (28)$$
 
 where $\mathrm{cv}_{1-a}(b)$ is the unique root solving $r(b; \mathrm{cv}) = a$.
 
