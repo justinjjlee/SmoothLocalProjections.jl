@@ -109,11 +109,11 @@ where $\boldsymbol{\xi}_{h,t} \equiv \mathbf{A}^h \mathbf{H}_{\bar{j}^{\ast}} \b
 #### Frisch-Waugh Mechanics of Double Robustness
 In the moment condition:
 
-$$\mathbb{E}\left[ \left\{ y_{i^{\ast},t+h} - \theta_{0,h} y_{j^{\ast},t} - \gamma_0(\mathbf{y}^{t-1}) \right\} \left\{ y_{j^{\ast},t} - \nu_0(\mathbf{y}^{t-1}) \right\} \right] = 0 \tag{11}$$
+$$\mathbb{E}\left[ \left( y_{i^{\ast},t+h} - \theta_{0,h} y_{j^{\ast},t} - \gamma_0(\mathbf{y}^{t-1}) \right) \left( y_{j^{\ast},t} - \nu_0(\mathbf{y}^{t-1}) \right) \right] = 0 \tag{11}$$
 
 If evaluated at approximations $\gamma(\cdot)$ and $\nu(\cdot)$, the expectation equals:
 
-$$\mathbb{E}\left[ \{\gamma_0(\mathbf{y}^{t-1}) - \gamma(\mathbf{y}^{t-1})\} \{\nu_0(\mathbf{y}^{t-1}) - \nu(\mathbf{y}^{t-1})\} \right] \tag{12}$$
+$$\mathbb{E}\left[ (\gamma_0(\mathbf{y}^{t-1}) - \gamma(\mathbf{y}^{t-1})) (\nu_0(\mathbf{y}^{t-1}) - \nu(\mathbf{y}^{t-1})) \right] \tag{12}$$
 
 Both estimation error in the outcome controls ($\gamma_0 - \hat{\gamma} \sim T^{-\zeta}$) and error in the treatment shock isolation ($\nu_0 - \hat{\nu} \sim T^{-\zeta}$) multiply together:
 
@@ -122,13 +122,13 @@ $$\text{Bias} \propto \|\hat{\gamma} - \gamma_0\| \times \|\hat{\nu} - \nu_0\| =
 #### Proposition 3.2 (Fragility of SVAR)
 Under Assumption 2.1:
 
-$$\hat{\delta}_h - \theta_{h,T} = \mathrm{trace}\left\{ \mathbf{S}^{-1} \boldsymbol{\Psi}_h \mathbf{H} \frac{1}{T}\sum_{t=1}^T \boldsymbol{\varepsilon}_t \tilde{\mathbf{y}}_{t-1}' \right\} + \frac{1}{\sigma_{j^{\ast}}^2} \mathbf{e}_{i^{\ast},n}' \mathbf{A}^h \frac{1}{T}\sum_{t=1}^T \boldsymbol{\xi}_{0,t} \varepsilon_{j^{\ast},t} + T^{-\zeta} \mathrm{aBias}(\hat{\delta}_h) + o_p(T^{-1/2} + T^{-\zeta}) \tag{14}$$
+$$\hat{\delta}_h - \theta_{h,T} = \mathrm{trace}\left( \mathbf{S}^{-1} \boldsymbol{\Psi}_h \mathbf{H} \frac{1}{T}\sum_{t=1}^T \boldsymbol{\varepsilon}_t \tilde{\mathbf{y}}_{t-1}' \right) + \frac{1}{\sigma_{j^{\ast}}^2} \mathbf{e}_{i^{\ast},n}' \mathbf{A}^h \frac{1}{T}\sum_{t=1}^T \boldsymbol{\xi}_{0,t} \varepsilon_{j^{\ast},t} + T^{-\zeta} \mathrm{aBias}(\hat{\delta}_h) + o_p(T^{-1/2} + T^{-\zeta}) \tag{14}$$
 
 where:
 
 $$\boldsymbol{\Psi}_h \equiv \sum_{\ell=1}^h \mathbf{A}^{h-\ell} \mathbf{H}_{\bullet, j^{\ast}} \mathbf{e}_{i^{\ast},n}' \mathbf{A}^{\ell-1} \tag{15}$$
 
-$$\mathrm{aBias}(\hat{\delta}_h) \equiv \mathrm{trace}\left\{ \mathbf{S}^{-1} \boldsymbol{\Psi}_h \mathbf{H} \sum_{\ell=1}^\infty \boldsymbol{\alpha}_\ell \mathbf{D} \mathbf{H}' (\mathbf{A}')^{\ell-1} \right\} - \mathbf{e}_{i^{\ast},n}' \sum_{\ell=1}^h \mathbf{A}^{h-\ell} \mathbf{H} \boldsymbol{\alpha}_\ell \mathbf{e}_{j^{\ast},m} \tag{16}$$
+$$\mathrm{aBias}(\hat{\delta}_h) \equiv \mathrm{trace}\left( \mathbf{S}^{-1} \boldsymbol{\Psi}_h \mathbf{H} \sum_{\ell=1}^\infty \boldsymbol{\alpha}_\ell \mathbf{D} \mathbf{H}' (\mathbf{A}')^{\ell-1} \right) - \mathbf{e}_{i^{\ast},n}' \sum_{\ell=1}^h \mathbf{A}^{h-\ell} \mathbf{H} \boldsymbol{\alpha}_\ell \mathbf{e}_{j^{\ast},m} \tag{16}$$
 
 > **Key Insight**: SVAR suffers from first-order bias $O_p(T^{-\zeta})$. When $\zeta = 1/2$, the bias is of order $T^{-1/2}$, placing it on the exact same scale as the standard error! This induces substantial undercoverage.
 
@@ -156,7 +156,7 @@ Equation (20) proves that $\hat{\delta}_h$ is the optimal projection of $\hat{\b
 
 Define the misspecification norm and noise-to-signal bound:
 
-$$\|\boldsymbol{\alpha}(L)\| \equiv \sqrt{ \sum_{\ell=1}^\infty \mathrm{trace}\left\{ \mathbf{D} \boldsymbol{\alpha}_\ell' \mathbf{D}^{-1} \boldsymbol{\alpha}_\ell \right\} } \le M \tag{22}$$
+$$\|\boldsymbol{\alpha}(L)\| \equiv \sqrt{ \sum_{\ell=1}^\infty \mathrm{trace}\left( \mathbf{D} \boldsymbol{\alpha}_\ell' \mathbf{D}^{-1} \boldsymbol{\alpha}_\ell \right) } \le M \tag{22}$$
 
 Scaled bias is $b_h \equiv \mathrm{aBias}(\hat{\delta}_h) / \sqrt{\mathrm{aVar}(\hat{\delta}_h)}$.
 
@@ -177,7 +177,7 @@ $$r(b; c) \equiv \mathbb{P}_{Z \sim \mathcal{N}(0,1)}(|Z + b| > c) = \Phi(-c - b
 #### Corollary 4.4 (Worst-Case Joint Undercoverage and Non-Detection)
 Consider the joint event $\mathcal{A}_T$ that the VAR CI fails to cover $\theta_{h,T}$ **and** the Hausman test fails to reject correct VAR specification:
 
-$$\sup_{\boldsymbol{\alpha}(L)} \lim_{T \to \infty} P(\mathcal{A}_T) = \sup_{b \ge 0} r(b; z_{1-a/2}) \left\{ 1 - r\left( \frac{b}{\sqrt{\mathrm{aVar}(\hat{\beta}_h)/\mathrm{aVar}(\hat{\delta}_h) - 1}}; z_{1-a/2} \right) \right\} \tag{26}$$
+$$\sup_{\boldsymbol{\alpha}(L)} \lim_{T \to \infty} P(\mathcal{A}_T) = \sup_{b \ge 0} r(b; z_{1-a/2}) \left[ 1 - r\left( \frac{b}{\sqrt{\mathrm{aVar}(\hat{\beta}_h)/\mathrm{aVar}(\hat{\delta}_h) - 1}}; z_{1-a/2} \right) \right] \tag{26}$$
 
 #### Equation (4.1): Least-Favorable MA Polynomial $\boldsymbol{\alpha}_{h,M}^\dagger(L)$
 The misspecification direction maximizing VAR bias is:
